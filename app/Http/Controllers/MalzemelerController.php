@@ -39,7 +39,7 @@ class MalzemelerController extends Controller
 
         if ($validator->fails()) {
             $message = $validator->errors();
-            return response()->json(['mesaj' => $message],404); // Status code here
+            return response()->json(['mesaj' => $message],500); // Status code here
         }
         else{
              $malzeme = \App\Malzemeler::create($request->all());

@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	var url = window.location;
+	var url = window.location.origin+'/malzemeler';
 
 	$('#btn-add-mal').click(function() {
 		$('#hata').hide();
@@ -80,7 +80,7 @@ $(document).ready(function(){
 			},
 			error: function (error) {
                 $('#hata').show();
-                $('#hata').text("Hata var detaylar gelecek");
+                $('#hata').text("Detaylar Az Sonra");
             }
 		});
 	});
