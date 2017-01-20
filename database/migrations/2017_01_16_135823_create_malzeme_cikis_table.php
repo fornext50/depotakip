@@ -13,7 +13,7 @@ class CreateMalzemeCikisTable extends Migration
     public function up()
     {
         Schema::create('malzeme_cikis', function (Blueprint $table) {
-            $table->integer('malzeme_id')->unsigned();
+            $table->integer('malzeme_id')->unique();
             $table->foreign('malzeme_id')->references('id')->on('malzemeler')->onDelete('cascade');
             $table->string('cikaran_kisi');
             $table->string('cikarilan_kisi');

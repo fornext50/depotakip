@@ -38,7 +38,7 @@ $(document).ready(function(){
 			gerekce : $('#cgerekce').val(),
 			cikarma_tarihi : $('#ctarih').val(),
 			aciklama : $('#caciklama').val(),
-			ip : window.location.host //localhostfalan yazacak olmadı bence :/
+			ip : window.location.host //localhostfalan yazacak olmadı bence :/ Dediğim gibi ama Model Tarafında o iş halloluyor :)
 		};
 
 		var state = $('#btn-save').val();
@@ -61,6 +61,7 @@ $(document).ready(function(){
 			success: function(data){
 				$('#frmMalc').trigger('reset');
 				$('#md-mc').modal('hide');
+				location.reload();
 			},
 			error: function (error) {
 				$('#hata').show();
@@ -98,6 +99,7 @@ $(document).ready(function(){
 			                    confirmButtonText:"Tamam",
 			                    timer:1000
 			                });
+						location.reload();
 					},
 					error: function (data){
 						swal({
@@ -107,6 +109,7 @@ $(document).ready(function(){
 			                    confirmButtonText:"Tamam",
 			                    timer:2000
 			                });
+
 					}
 				});
 		});

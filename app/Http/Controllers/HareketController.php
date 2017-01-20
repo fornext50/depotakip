@@ -35,7 +35,7 @@ class HareketController extends Controller
      */
     public function create()
     {
-        //
+        return view('errors.404');
     }
 
     /**
@@ -100,7 +100,15 @@ class HareketController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $hareketler = MalzemeCikis::find($id);
+        $hareketler->cikaran_kisi = $request->cikaran_kisi;
+        $hareketler->cikarilan_kisi = $request->cikarilan_kisi;
+        $hareketler->cikarma_tarihi = $request->cikarma_tarihi;
+        $hareketler->gerekce = $request->gerekce;
+        $hareketler->aciklama = $request->aciklama;
+        $hareketler->save();
+
+        return response()->json($hareketler);
     }
 
     /**
