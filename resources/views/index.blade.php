@@ -47,5 +47,29 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-lg-4 col-md-4">
+             <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bell fa-fw"></i> Son Eklenen 5 Malzeme
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="list-group">
+                                @foreach($data['malzemeler'] as $malzeme)
+                                <div class="list-group-item">
+                                    <i class="fa fa-comment fa-desktop"></i> {{ $malzeme->mkimlik . ' ' .$malzeme->madi  }}
+                                    <span class="pull-right text-muted small"><em>{{ $malzeme->created_at }}</em>
+                                    </span>
+                                </div>
+                                @endforeach
+                            </div>
+                            <!-- /.list-group -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+        </div>
+    </div>
     <!-- /.row -->
 @endsection
