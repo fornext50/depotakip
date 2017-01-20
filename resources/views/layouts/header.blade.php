@@ -12,6 +12,7 @@
     <link href="{{URL::asset('custom/metisMenu/metisMenu.min.css')}}" rel="stylesheet">
     <link href="{{URL::asset('custom/css/sb-admin-2.css')}}" rel="stylesheet">
     <link href="{{URL::asset('custom/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+    
     <link rel="stylesheet" href="{{ URL::asset('custom/sweetalert/sweetalert.css') }}">
     @yield('css')
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

@@ -19,7 +19,7 @@ class CreateMalzemeCikisTable extends Migration
             $table->string('cikarilan_kisi');
             $table->date('cikarma_tarihi');
             $table->text('gerekce');
-            $table->text('aciklama');
+            $table->text('aciklama')->nullable();
             $table->string('ip');
             $table->timestamps();
         });

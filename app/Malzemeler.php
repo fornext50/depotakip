@@ -8,9 +8,9 @@ class Malzemeler extends Model
 {
     protected $table = "malzemeler";
 
-    public function malzemeler()
+    public function malzeme_cikis()
     {
-        return $this->hasOne('App\MalzemeCikis');
+        return $this->belongsTo('App\MalzemeCikis');
     }
 
     protected $fillable = [

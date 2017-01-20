@@ -19,7 +19,7 @@ class MalzemelerController extends Controller
 
     public function create()
     {
-        //return view('envanter.mdetail', ['type' => 'new','data' => null]);
+        return view('envanter.mdetail', ['type' => 'new','data' => null]);
     }
 
     public function show($id)

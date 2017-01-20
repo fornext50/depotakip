@@ -16,7 +16,7 @@
                 <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
-                <li><a href="{{URL::to('/')}}"><i class="fa fa-user fa-fw"></i> Erhan TÜTÜNCÜ</a>
+                <li><a href="{{URL::to('/')}}"><i class="fa fa-user fa-fw"></i> {{ Auth::user()->name }}</a>
                 </li>
                 <li><a href="{{URL::to('profil')}}"><i class="fa fa-gear fa-fw"></i> Profil Düzenle</a>
                 </li>

@@ -51,7 +51,7 @@ $(document).ready(function(){
 		var m_id = $('#m_id').val();
 		var type = "POST";
 		var my_url = url;
-		console.log(m_id);
+		
 		if(state == "update")
 		{
 			type = "PUT";
@@ -93,8 +93,8 @@ $(document).ready(function(){
 		});
 		var m_id = $(this).val();
 		swal({
-			title : "Kayıt Silme",
-			text: "Seçili kaydı silmek istiyor musunuz?",
+			title : "Silmek istiyor musunuz?",
+			text: "Bu kaydın malzeme hareketleri varsa onlarda silenecek devam etmek istiyor musunuz?",
 			type: "warning",
 			cancelButtonText: "Hayır",
 			showCancelButton: true,

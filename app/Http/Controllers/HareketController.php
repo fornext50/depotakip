@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\MalzemeCikis;
+use App\Malzemeler;
+use Validator;
 
 class HareketController extends Controller
 {
@@ -17,7 +20,12 @@ class HareketController extends Controller
      */
     public function index()
     {
-        //
+        $hareketler = MalzemeCikis::all();
+        $malzemeler = Malzemeler::all();
+        if(count($malzemeler)<=0)
+            return redirect('/malzemeler');
+        else
+            return view('envanter.mclist',['hareketler' => $hareketler,'malzemeler'=>$malzemeler]);
     }
 
     /**
@@ -38,7 +46,22 @@ class HareketController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'cikaran_kisi' => 'required|max:255',
+            'cikarilan_kisi' => 'required|max:255',
+            'gerekce' => 'required|max:255',
+            'cikarma_tarihi' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            $message = $validator->errors();
+            return response()->json(['mesaj' => $message],500); // Status code here
+        }
+        else
+        {
+            $malzeme = MalzemeCikis::create($request->all());
+            return $malzeme;
+        }
     }
 
     /**
@@ -58,9 +81,14 @@ class HareketController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id,Request $request)
     {
-        //
+        if($request->ajax()){
+             $data = MalzemeCikis::find($id);
+        return response()->json($data);
+        }
+        else
+            return view('errors.404');
     }
 
     /**
@@ -83,6 +111,7 @@ class HareketController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $hareket = MalzemeCikis::destroy($id);
+        return response()->json($hareket);
     }
 }
