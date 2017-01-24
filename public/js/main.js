@@ -13,13 +13,13 @@ $(document).ready(function() {
 	var sifre = '	<div class="row"><form id="frmSifre"><input type="text" id="uid" hidden>'+
 							'		<div class="col-md-12">'+
 							'		<div class="form-group">'+
-							'			<label> Aktif Şifre </label><input id="password" type="password" class="form-control">'+
+							'			<label> Aktif Şifre </label><input id="oldpassword" type="password" class="form-control">'+
 							'		</div>'+
 							'		<div class="form-group">'+
 							'			<label> Yeni Şifre </label><input id="newpassword" type="password" class="form-control">'+
 							'		</div>'+
 							'		<div class="form-group">'+
-							'			<label> Yeni Şifre Tekrar  </label><input id="confirpassword" type="password" class="form-control">'+
+							'			<label> Yeni Şifre Tekrar  </label><input id="confirmpassword" type="password" class="form-control">'+
 							'		</div>'+
 							'		</form></div>'+
 							'	</div>';
@@ -84,7 +84,27 @@ $(document).ready(function() {
 	});
 
 	$('#btnsave-sifre').click(function(e){
-		swal('yapıalcak');
+		$.ajaxSetup({
+			headers: {
+				"X-CSRF-TOKEN" : $('meta[name="_token"').attr('content')
+			}
+		});
+		e.preventDefault();
+		var formData = {
+			oldpassword : $('#oldpassword').val(),
+			newpassword : $('#newpassword').val(),
+			confirmpassword : $('#confirmpassword').val()
+		};
+
+		$.ajax({
+			url : url+'/passwordchange',
+			dataType: 'json',
+			type: 'POST',
+			data:formData,
+			success: function(data){
+				$("#modal-sifre").modal('hide');
+			}
+		});
 	});
 
 	function modalForm (title,body,type){

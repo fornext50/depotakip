@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use Validator;
+use Hash;
 class HomeController extends Controller
 {
     /**
@@ -42,6 +43,34 @@ class HomeController extends Controller
 
     public function profil(){
         return response()->json(Auth::user());
+    }
+
+    public function changePassword(Request $req)
+    {
+        $validator = Validator::make($req->all(),[
+            'oldpassword'     => 'required',
+            'newpassword'     => 'required',
+            'confirmpassword' => 'required|same:newpassword', 
+        ]);
+        if ($validator->fails()) {
+            $message = $validator->errors();
+            return response()->json(['mesaj' => $message],404); // Status code here
+        }
+
+        $current_password = Auth::User()->password;           
+        if(Hash::check($req['oldpassword'], $current_password))
+        {           
+            $user_id = Auth::User()->id;                       
+            $obj_user = \App\User::find($user_id);
+            $obj_user->password = Hash::make($req['newpassword']);;
+            $obj_user->save(); 
+            return response()->json($obj_user);
+        }
+        else
+        {           
+            $error = array('current-password' => 'Please enter correct current password');
+            return response()->json(array('error' => $error), 400);   
+        }
     }
 
     public function postEdit(Request $request){

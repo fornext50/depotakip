@@ -44,6 +44,7 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/about', 'HomeController@about');
     Route::get('/profil','HomeController@profil');
     Route::put('/profil','HomeController@postEdit');
+    Route::post('/passwordchange','HomeController@changePassword');
     Route::resource('malzemeler', 'MalzemelerController');
     Route::resource('hareketler', 'HareketController');
 });
