@@ -111,6 +111,21 @@ return [
         'mfiyat' => [
             'required' => 'Fiyat Alanı Gerekli!',
         ],
+        'cikaran_kisi' => [
+            'required' => 'Çıkaran Kişi Alanı Gerekli!',
+        ],
+        'cikarilan_kisi' => [
+            'required' => 'Çıkarılan Kişi Alanı Gerekli!',
+        ],
+        'gerekce' => [
+            'required' => 'Gerekçe Alanı Gerekli!',
+        ],
+        'cikarma_tarihi' => [
+            'required' => 'Çıkarma Tarihi Alanı Gerekli!',
+        ],
+        'malzeme_id' => [
+            'required' => 'Çıkış yapılacak malzeme seçiniz!!'
+        ]
     ],
 
     /*

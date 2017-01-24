@@ -7,13 +7,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Depo Takip - @yield('title','Header')</title>
+    <title>Depo Takip - @yield('title','Giriş Yap')</title>
     <link href="{{URL::asset('css/bootstrap.min.css')}}" rel="stylesheet">
+
     <link href="{{URL::asset('custom/metisMenu/metisMenu.min.css')}}" rel="stylesheet">
     <link href="{{URL::asset('custom/css/sb-admin-2.css')}}" rel="stylesheet">
     <link href="{{URL::asset('custom/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
-    
     <link rel="stylesheet" href="{{ URL::asset('custom/sweetalert/sweetalert.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('custom/select2/css/select2.min.css') }}">
     @yield('css')
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

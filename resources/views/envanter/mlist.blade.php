@@ -123,7 +123,6 @@
 <script src="{{ URL::asset('custom/datatables-plugins/dataTables.bootstrap.min.js') }}"></script>
 <script src="{{ URL::asset('custom/datatables-responsive/dataTables.responsive.js') }}"></script>
 <script src="{{ URL::asset('apis/jsmalz.js') }}"></script>
-<script src="{{ URL::asset('apis/jsvalid.js') }}"></script>
 <script>
     $(document).ready(function() {
         var my_url = window.location;

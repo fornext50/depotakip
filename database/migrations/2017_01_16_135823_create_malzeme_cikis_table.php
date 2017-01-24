@@ -1,4 +1,4 @@
-<?php
+z<?php
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -13,12 +13,14 @@ class CreateMalzemeCikisTable extends Migration
     public function up()
     {
         Schema::create('malzeme_cikis', function (Blueprint $table) {
-            $table->integer('malzeme_id')->unique();
-            $table->foreign('malzeme_id')->references('id')->on('malzemeler')->onDelete('cascade');
+            $table->increments('id');
+            $table->integer('malzeme_id')->unsigned();
+            $table->foreign('malzeme_id')->references('id')->on('malzemeler');
             $table->string('cikaran_kisi');
             $table->string('cikarilan_kisi');
             $table->date('cikarma_tarihi');
             $table->text('gerekce');
+            $table->boolean('onay')->default(false);
             $table->text('aciklama')->nullable();
             $table->string('ip');
             $table->timestamps();

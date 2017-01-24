@@ -35,19 +35,31 @@ Route::get('malzemeler',function(){
 Route::get('yenimalzeme',function(){
     return view('envanter.yenimalzeme');
 });
-
 */
 
-Auth::routes();
 
-Route::get('/', 'HomeController@index');
-Route::resource('malzemeler', 'MalzemelerController');
-Route::resource('hareketler', 'HareketController');
+Auth::routes();
+Route::group(['middleware' => 'auth'],function(){
+    Route::get('/', 'HomeController@index');
+    Route::get('/about', 'HomeController@about');
+    Route::get('/profil','HomeController@profil');
+    Route::put('/profil','HomeController@postEdit');
+    Route::resource('malzemeler', 'MalzemelerController');
+    Route::resource('hareketler', 'HareketController');
+});
+
+Route::get('/yetkiyok',function(){
+        return view('errors.err');
+    });
+
+
+/*
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/{page}',function($page){
         if(View::exists($page))
             return view($page);
     });
 });
+*/
 
 

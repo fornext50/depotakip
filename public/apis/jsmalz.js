@@ -79,10 +79,25 @@ $(document).ready(function(){
 				$('#md-malz').modal('hide');
 				location.reload();
 			},
-			error: function (error) {
-                $('#hata').show();
-                $('#hata').text("Detaylar Az Sonra");
-            }
+			error: function (xhr) {
+				var msg = "Beklenmedik bir hata";
+				if(xhr.status == 404){
+					var json = xhr.responseJSON;
+					var b = JSON.parse(JSON.stringify(json.mesaj));
+					msg = "<ul>";
+					$.each(b,function(i,val){
+						msg += "<li>"+ val + "</li>";
+					});
+					msg += "</ul>";
+				}
+				if(xhr.status == 500){
+					var json = xhr.responseJSON;
+					var b = JSON.parse(JSON.stringify(json.mesaj));
+					msg = b;
+				}
+				$('#hata').show();
+				$('#hata').html(msg);
+			}
 		});
 	});
 	

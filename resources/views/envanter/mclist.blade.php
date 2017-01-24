@@ -21,13 +21,13 @@
                             <label>Malzeme Seç</label>
                             <select id="m_id" class="form-control">
                                 @foreach($malzemeler as $malzeme)
-                                <option value="{{ $malzeme->id }}">{{ $malzeme->madi . ' - '. $malzeme->mgrubu }}</option>
+                                <option value="{{ $malzeme->id }}">{{ $malzeme->mkimlik. ' - ' .$malzeme->madi }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Çıkaran Kişi</label>
-                            <input name="mcikaran" id="mcikaran"  class="form-control" required>
+                            <input name="mcikaran" id="mcikaran" value="{{ Auth::user()->name }}"  class="form-control" required disabled>
                         </div>
                         <div class="form-group">
                             <label>Çıkarılan Kişi</label>
@@ -80,15 +80,19 @@
                         <tbody id="mal-list" name="mal-list">
                         @foreach($hareketler as $hareket)
                         <tr id="mal-{{ $hareket->id }}">
-                            <td>{{ $hareket->malzemeler->mkimlik }}</td>
-                            <td>{{ $hareket->malzemeler->madi }}</td>
-                            <td>{{ $hareket->malzemeler->mgrubu }}</td>
+                            <td>{{ $hareket->malzemeler[0]->mkimlik }}</td>
+                            <td>{{ $hareket->malzemeler[0]->madi }}</td>
+                            <td>{{ $hareket->malzemeler[0]->mgrubu }}</td>
                             <td>{{ $hareket->cikaran_kisi }}</td>
                             <td>{{ $hareket->cikarilan_kisi }}</td>
                             <td>{{ $hareket->cikarma_tarihi }}</td>
                             <td>
-                                <button value="{{ $hareket->malzeme_id }}" class="btn btn-warning btn-circle btn-detail btn-edit"><i class="fa fa-edit"></i></button>
-                                <button class="btn btn-danger btn-circle btn-delete delete-malc" value="{{ $hareket->malzeme_id }}"><i class="fa fa-times"></i></button>
+                                @if(!$hareket->malzemeler[0]->deleted)
+                                <button value="{{ $hareket->id }}" class="btn btn-danger btn-circle btn-delete delete-malc"><i class="fa fa-times"></i></button>
+                                <button id="monay" class="btn btn-info btn-circle bonay" value="{{ $hareket->malzemeler[0]->id }}"><i class="fa fa-check"></i></button>
+                                @else
+                                <button value="{{ $hareket->id }}" class="btn btn-info btn-view">Görüntüle</button>
+                                @endif
                             </td>
                         </tr>
                         @endforeach
@@ -118,6 +122,8 @@
         $('#datetimepicker1').datepicker({
             format : "dd/mm/yyyy"
         });
+
+        $("#m_id").select2({ width: '100%',dropdownAutoWidth : true });
     });
 </script>
 @endsection
