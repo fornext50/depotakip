@@ -41,6 +41,7 @@ $(document).ready(function(){
 			$('#m_id').val(data.malzeme_id);
 			$('#mcikaran').val(data.cikaran_kisi);
 			$('#mcikarilan').val(data.cikarilan_kisi);
+			$('#tbirim').val(data.tesim_birimi);
 			$('#ctarih').val(data.cikarma_tarihi);
 			$('#cgerekce').val(data.gerekce);
 			$('#caciklama').val(data.aciklama);	
@@ -55,6 +56,7 @@ $(document).ready(function(){
 			$('#m_id').val(data.malzeme_id);
 			$('#mcikaran').val(data.cikaran_kisi);
 			$('#mcikarilan').val(data.cikarilan_kisi);
+			$('#tbirim').val(data.tesim_birimi);
 			$('#ctarih').val(data.cikarma_tarihi);
 			$('#cgerekce').val(data.gerekce);
 			$('#caciklama').val(data.aciklama);	
@@ -78,6 +80,7 @@ $(document).ready(function(){
 			gerekce : $('#cgerekce').val(),
 			cikarma_tarihi : $('#ctarih').val(),
 			aciklama : $('#caciklama').val(),
+			teslim_birimi : $('#tbirim').val(),
 			ip : window.location.host //localhostfalan yazacak olmadı bence :/ Dediğim gibi ama Model Tarafında o iş halloluyor :)
 		};
 
