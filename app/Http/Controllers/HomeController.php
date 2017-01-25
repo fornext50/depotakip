@@ -76,7 +76,7 @@ class HomeController extends Controller
     public function postEdit(Request $request){
         $validator = Validator::make($request->all(), [
             'username'   => 'required|max:255',
-            'mail' => 'required|max:255',
+            'mail' => 'required|email',
         ]);
 
         if ($validator->fails()) {

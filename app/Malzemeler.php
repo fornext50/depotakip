@@ -26,7 +26,7 @@ class Malzemeler extends Model
         if(parent::where('deleted',false)->where('mkimlik',$attributes['mkimlik'])->count() > 0)
         {
             $message = "Bu kimlik numarasına ait var malzeme mevcut!";
-            return response()->json(['mesaj' => $message],500);
+            return response($message,404);
         }
         else
             return parent::create($attributes);

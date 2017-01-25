@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Depo Takip - @yield('title','Giriş Yap')</title>
+    <title>{{ env('APP_NAME','Uygulama') }} - @yield('title','Giriş Yap')</title>
     <link href="{{URL::asset('css/bootstrap.min.css')}}" rel="stylesheet">
 
     <link href="{{URL::asset('custom/metisMenu/metisMenu.min.css')}}" rel="stylesheet">

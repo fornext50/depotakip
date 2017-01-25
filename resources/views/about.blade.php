@@ -2,7 +2,7 @@
 @section('title','Program')
 @section('content')
 	<div class="row">
-		<h3>Depo Malzeme Takip</h3>
+		<h3>{{ env('APP_NAME','Uygulama' )}}</h3>
 		<ul>
 			<li>Malzeme Kayıt Sistemi</li>
 			<li>Malzeme Çıkış Sistemi</li>

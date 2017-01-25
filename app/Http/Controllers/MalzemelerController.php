@@ -47,8 +47,17 @@ class MalzemelerController extends Controller
         else
         {
            $malzeme = \App\Malzemeler::create($request->all());
-           $yazi = sprintf('%s kimlik numaralı %s malzemesini EKLEDİ',$malzeme->mkimlik,$malzeme->madi);
-           Tblog::loglama('MalzemeKayit',$yazi,'Malzemeler');
+           if(!isset($malzeme->mkimlik))
+           {
+                $message = $malzeme->original;
+                return response()->json(['mesaj' => $message],500);
+           }
+           else
+           {
+                $yazi = sprintf('%s kimlik numaralı %s malzemesini EKLEDİ',$malzeme->mkimlik,$malzeme->madi);
+                Tblog::loglama('MalzemeKayit',$yazi,'Malzemeler');
+           }
+           
            return $malzeme;
        }
        

@@ -76,7 +76,6 @@ $(document).ready(function() {
 					});
 					msg += "</ul>";
 				}
-				
 				$('#hata').show();
 				$('#hata').html(msg);
 			}

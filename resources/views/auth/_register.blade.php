@@ -1,12 +1,11 @@
-@include('layouts.header')
+@extends('layouts.app')
 
+@section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="login-panel panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">{{ env('APP_NAME', 'Uygualama Adı')}} Kayıt Formu</h3>
-                </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Kayıt Formu</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {{ csrf_field() }}
@@ -62,8 +61,8 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-5 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary btn-block">
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">
                                     Kayıt Ol
                                 </button>
                             </div>
@@ -71,9 +70,7 @@
                     </form>
                 </div>
             </div>
-            <p style="text-align: center">2017 © Bilgi İşlem Daire Başkanlığı</p>
         </div>
-
     </div>
 </div>
-@include('layouts.footer')
+@endsection

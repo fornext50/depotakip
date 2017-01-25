@@ -6,7 +6,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="{{ URL::to('/') }}">Depo Takip</a>
+        <a class="navbar-brand" href="{{ URL::to('/') }}">{{ env('APP_NAME','Uygulama') }}</a>
     </div>
     <!-- /.navbar-header -->
 
@@ -45,7 +45,7 @@
                     <a href="{{URL::to('malzemeler/')}}"><i class="fa fa-desktop fa-fw"></i> Malzemeler</a>
                 </li>
                 <li>
-                    <a href="{{URL::to('hareketler/')}}"><i class="fa fa-bar-chart-o fa-fw"></i>Malzeme Çıkış</a>
+                    <a href="{{URL::to('hareketler/')}}"><i class="fa fa-bar-chart-o fa-fw"></i> Malzeme Çıkış</a>
                 </li>
                 <li>
                     <a href="{{ URL::to('about') }}"><i class="fa fa-user fa-gear"></i> Program</a>
