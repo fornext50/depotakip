@@ -14,7 +14,7 @@ class MalzemeCikis extends Model
     }
     
     protected $fillable = [
-        'malzeme_id','cikaran_kisi','cikarma_tarihi','cikarilan_kisi','gerekce', 'aciklama', 'ip','onay'
+        'malzeme_id','cikaran_kisi','cikarma_tarihi','cikarilan_kisi','gerekce', 'aciklama', 'ip','onay','teslim_birimi'
     ];
 
     public function setIpAttribute($value)

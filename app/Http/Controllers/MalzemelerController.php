@@ -106,7 +106,7 @@ public function destroy(Request $req,$id)
 }
 
 private function getData(){
-    $data =Malzemeler::where('deleted',false)->get();
+    $data =Malzemeler::orderBy('created_at','desc')->where('deleted',false)->get();
     return json_encode($data);
 }
 private function getDataByID($id){

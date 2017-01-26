@@ -27,11 +27,12 @@ class HomeController extends Controller
     public function index()
     {
         //return \App\Malzemeler::all()->take(1);
-        $malzemeler = \App\Malzemeler::all()->where('deleted',false);
+        //$malzemeler = \App\Malzemeler::all()->where('deleted',false);
+        $malzemeler = \App\Malzemeler::orderBy('created_at','desc')->where('deleted',false);
         $data = [
-            'malzemesayisi' => $malzemeler->count(),
+            'malzemesayisi' => \App\Malzemeler::count(),
             'hareketsayisi' => \App\MalzemeCikis::all()->count(),
-            'malzemeler' =>\App\Malzemeler::orderBy('created_at','desc')->take(5)->get()
+            'malzemeler' =>$malzemeler->take(10)->get()
         ];
        // return response()->json($data);
         return view('index')->with('data',$data);

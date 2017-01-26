@@ -17,8 +17,8 @@ class HareketController extends Controller
 
     public function index()
     {
-        $hareketler = MalzemeCikis::all();
-        $malzemeler = Malzemeler::all()->where('deleted',false);
+        $hareketler = MalzemeCikis::orderBy('created_at','desc')->get();
+        $malzemeler = \App\Malzemeler::orderBy('created_at','desc')->where('deleted',false)->get();
         return view('envanter.mclist',['hareketler' => $hareketler,'malzemeler'=>$malzemeler]);
     }
 
@@ -33,7 +33,8 @@ class HareketController extends Controller
             'malzeme_id' => 'required',
             'cikarilan_kisi' => 'required|max:255',
             'gerekce'        => 'required|max:255',
-            'cikarma_tarihi' => 'required'
+            'cikarma_tarihi' => 'required',
+            'teslim_birimi' => 'required|max:255'
         ]);
 
         if ($validator->fails()) {
@@ -47,6 +48,7 @@ class HareketController extends Controller
             $malzeme->cikaran_kisi   = \Auth::user()->name;
             $malzeme->cikarilan_kisi = $request->cikarilan_kisi;
             $malzeme->cikarma_tarihi = $request->cikarma_tarihi;
+            $malzeme->teslim_birimi  = $request->teslim_birimi;
             $malzeme->gerekce        = $request->gerekce;
             $malzeme->aciklama       = $request->aciklama;
             $malzeme->ip             = $_SERVER['REMOTE_ADDR'];
@@ -78,6 +80,7 @@ class HareketController extends Controller
         $hareketler->cikaran_kisi   = \Auth::user()->name;
         $hareketler->cikarilan_kisi = $request->cikarilan_kisi;
         $hareketler->cikarma_tarihi = $request->cikarma_tarihi;
+        $hareketler->teslim_birimi  =   $reques->teslim_birimi;
         $hareketler->gerekce        = $request->gerekce;
         $hareketler->aciklama       = $request->aciklama;
         $hareketler->save();

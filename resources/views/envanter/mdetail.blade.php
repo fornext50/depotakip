@@ -7,15 +7,15 @@
                 {{ csrf_field() }}
                 <input name="_type" type="hidden" value="view">
                 <div class="form-group">
-                    <label>Malzeme Adı</label>
+                    <label>Malzeme Adı<span style="color:red">*</span></label>
                     <input name="madi" value="{{ $data['madi'] }}" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label>Kimlik No</label>
+                    <label>Kimlik No<span style="color:red">*</span></label>
                     <input name="mkimlik" value="{{ $data['mkimlik'] }}" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label>Grubu</label>
+                    <label>Grubu<span style="color:red">*</span></label>
                     <input name="mgrubu" value="{{ $data['mgrubu'] }}" class="form-control">
                 </div>
                 <div class="row">
@@ -35,7 +35,7 @@
                 <div class="row">
                     <div class="col-xs-12 col-md-6">
                         <div class="form-group">
-                            <label>Fiyatı</label>
+                            <label>Fiyatı<span style="color:red">*</span></label>
                             <div class="input-group">
                                 <input name="mfiyat" type="number" value="{{ $data['mfiyat'] }}" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="c2" />
                                 <span class="input-group-addon">₺</span>
@@ -44,7 +44,7 @@
                     </div>
                     <div class="col-xs-12 col-md-6">
                         <div class="form-group">
-                            <label>Durumu</label>
+                            <label>Durumu<span style="color:red">*</span></label>
                             <input value="{{ $data['mdurum'] }}" name="mdurum" class="form-control">
                         </div>
                     </div>

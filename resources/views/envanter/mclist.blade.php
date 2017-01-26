@@ -18,7 +18,7 @@
                 <div class="modal-body">
                     <form  name="frmMalc" role="form" id="frmMalc">
                         <div class="form-group">
-                            <label>Malzeme Seç</label>
+                            <label>Malzeme Seç<span style="color:red">*</span></label>
                             <select id="m_id" class="form-control">
                                 @foreach($malzemeler as $malzeme)
                                 <option value="{{ $malzeme->id }}">{{ $malzeme->mkimlik. ' - ' .$malzeme->madi }}</option>
@@ -26,21 +26,25 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Çıkaran Kişi</label>
+                            <label>Teslim Eden<span style="color:red">*</span></label>
                             <input name="mcikaran" id="mcikaran" value="{{ Auth::user()->name }}"  class="form-control" required disabled>
                         </div>
                         <div class="form-group">
-                            <label>Çıkarılan Kişi</label>
+                            <label>Teslim Alan<span style="color:red">*</span></label>
                             <input id="mcikarilan" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label>Çıkarılma Tarihi</label>
+                            <label>Teslim Birimi<span style="color:red">*</span></label>
+                            <input id="tbirim" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Çıkarılma Tarihi<span style="color:red">*</span></label>
                             <div class="input-group date" id="datetimepicker1">
                                 <input id="ctarih" type="text" class="form-control"><span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label>Gerekçe</label>
+                            <label>Gerekçe<span style="color:red">*</span></label>
                             <input id="cgerekce" type="text" name="cgerekce" class="form-control" >
                         </div>
                         <div class="form-group">
@@ -71,8 +75,9 @@
                             <th>Malzeme Kimlik</th>
                             <th>Malzeme Adı</th>
                             <th>Grubu</th>
-                            <th>Çıkaran Kişi</th>
-                            <th>Çıkarılan Kişi</th>
+                            <th>Teslim Eden</th>
+                            <th>Teslim Alan</th>
+                            <th>Teslim Birimi</th>
                             <th>Çıkarma Tarihi</th>
                             <th>#</th>
                         </tr>
@@ -85,11 +90,12 @@
                             <td>{{ $hareket->malzemeler[0]->mgrubu }}</td>
                             <td>{{ $hareket->cikaran_kisi }}</td>
                             <td>{{ $hareket->cikarilan_kisi }}</td>
+                            <td>{{ $hareket->teslim_birimi }}</td>
                             <td>{{ $hareket->cikarma_tarihi }}</td>
                             <td>
                                 @if(!$hareket->malzemeler[0]->deleted)
-                                <button value="{{ $hareket->id }}" class="btn btn-danger btn-circle btn-delete delete-malc"><i class="fa fa-times"></i></button>
-                                <button id="monay" class="btn btn-info btn-circle bonay" value="{{ $hareket->malzemeler[0]->id }}"><i class="fa fa-check"></i></button>
+                                <button data-toggle="tooltip" data-placement="top" title="İptal Et" value="{{ $hareket->id }}" class="btn btn-danger btn-circle btn-delete delete-malc"><i class="fa fa-times"></i></button>
+                                <button data-toggle="tooltip" data-placement="top" title="Onayla" id="monay" class="btn btn-info btn-circle bonay" value="{{ $hareket->malzemeler[0]->id }}"><i class="fa fa-check"></i></button>
                                 @else
                                 <button value="{{ $hareket->id }}" class="btn btn-info btn-view">Görüntüle</button>
                                 @endif
@@ -118,12 +124,16 @@
     $(document).ready(function() {
         $('#dtMalList').DataTable({
             responsive: true,
+             "ordering": false
         });
         $('#datetimepicker1').datepicker({
             format : "dd/mm/yyyy"
         });
 
         $("#m_id").select2({ width: '100%',dropdownAutoWidth : true });
+        $(function () {
+          $('[data-toggle="tooltip"]').tooltip()
+        });
     });
 </script>
 @endsection

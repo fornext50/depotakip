@@ -124,7 +124,10 @@ return [
             'required' => 'Çıkarma Tarihi Alanı Gerekli!',
         ],
         'malzeme_id' => [
-            'required' => 'Çıkış yapılacak malzeme seçiniz!!'
+            'required' => 'Çıkış yapılacak malzeme seçiniz!!',
+        ],
+        'cikis_birimi' => [
+            'required' => 'Teslim Birim Alanı Gerekli!!',
         ]
     ],
 

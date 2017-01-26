@@ -18,6 +18,7 @@ class CreateMalzemeCikisTable extends Migration
             $table->foreign('malzeme_id')->references('id')->on('malzemeler');
             $table->string('cikaran_kisi');
             $table->string('cikarilan_kisi');
+            $table->string('teslim_birimi');
             $table->date('cikarma_tarihi');
             $table->text('gerekce');
             $table->boolean('onay')->default(false);

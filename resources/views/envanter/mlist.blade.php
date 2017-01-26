@@ -17,15 +17,15 @@
                 <div class="modal-body">
                     <form  name="frmMalz" role="form" id="frmMalz">
                         <div class="form-group">
-                            <label>Malzeme Adı</label>
+                            <label>Malzeme Adı<span style="color:red">*</span></label>
                             <input name="madi" id="madi" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label>Kimlik No</label>
+                            <label>Kimlik No<span style="color:red">*</span></label>
                             <input name="mkimlik" id="mkimlik"  class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label>Grubu</label>
+                            <label>Grubu<span style="color:red">*</span></label>
                             <input id="mgrubu" class="form-control" required>
                         </div>
                         <div class="row">
@@ -45,7 +45,7 @@
                         <div class="row">
                             <div class="col-xs-12 col-md-6">
                                 <div class="form-group">
-                                    <label>Fiyatı</label>
+                                    <label>Fiyatı<span style="color:red">*</span></label>
                                     <div class="input-group">
                                         <input type="number"  min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" name="mfiyat" id="c2" />
                                         <span class="input-group-addon">₺</span>
@@ -54,7 +54,7 @@
                             </div>
                             <div class="col-xs-12 col-md-6">
                                 <div class="form-group">
-                                    <label>Durumu</label>
+                                    <label>Durumu<span style="color:red">*</span></label>
                                     <input id="mdurum" class="form-control required">
                                 </div>
                             </div>
@@ -102,8 +102,8 @@
                             <td>{{ $malzeme->mdurum }}</td>
                             <td>{{ $malzeme->mozellik }}</td>
                             <td>
-                                <button value="{{ $malzeme->id }}" class="btn btn-warning btn-circle btn-detail btn-edit"><i class="fa fa-edit"></i></button>
-                                <button class="btn btn-danger btn-circle btn-delete delete-malz" value="{{ $malzeme->id }}"><i class="fa fa-times"></i></button>
+                                <button data-toggle="tooltip" data-placement="top" title="Kayıt Düzenle" value="{{ $malzeme->id }}" class="btn btn-warning btn-circle btn-detail btn-edit"><i class="fa fa-edit"></i></button>
+                                <button data-toggle="tooltip" data-placement="top" title="Kayıt Sil" class="btn btn-danger btn-circle btn-delete delete-malz" value="{{ $malzeme->id }}"><i class="fa fa-times"></i></button>
                             </td>
                         </tr>
                         @endforeach
@@ -128,7 +128,11 @@
         var my_url = window.location;
         $('#dtMalList').DataTable({
             responsive: true,
+             "ordering": false
         });
     });
+       $(function () {
+          $('[data-toggle="tooltip"]').tooltip()
+        });
 </script>
 @endsection
