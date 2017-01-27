@@ -36,9 +36,6 @@ Route::get('yenimalzeme',function(){
     return view('envanter.yenimalzeme');
 });
 */
-Route::get('deneme', function() {
-    return 'deneme';
-});
 
 Auth::routes();
 Route::group(['middleware' => 'auth'],function(){
