@@ -30,9 +30,9 @@ class HomeController extends Controller
         //$malzemeler = \App\Malzemeler::all()->where('deleted',false);
         $malzemeler = \App\Malzemeler::orderBy('created_at','desc')->where('deleted',false);
         $data = [
-            'malzemesayisi' => \App\Malzemeler::count(),
+            'malzemesayisi' => \App\Malzemeler::where('deleted',false)->count(),
             'hareketsayisi' => \App\MalzemeCikis::all()->count(),
-            'malzemeler' =>$malzemeler->take(10)->get()
+            'malzemeler' =>$malzemeler->take(10)->get(),
         ];
        // return response()->json($data);
         return view('index')->with('data',$data);
