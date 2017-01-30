@@ -46,6 +46,7 @@ Route::group(['middleware' => 'auth'],function(){
     Route::post('/passwordchange','HomeController@changePassword');
     Route::resource('malzemeler', 'MalzemelerController');
     Route::resource('hareketler', 'HareketController');
+    Route::resource('gruptanim','GrupController');
 });
 
 Route::get('/yetkiyok',function(){

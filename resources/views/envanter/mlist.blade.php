@@ -26,7 +26,12 @@
                         </div>
                         <div class="form-group">
                             <label>Grubu<span style="color:red">*</span></label>
-                            <input id="mgrubu" class="form-control" required>
+                            <!--<input id="mgrubu" class="form-control" required> -->
+                            <select id="mgrubu" class="form-control">
+                                @foreach($gruplar as $grup)
+                                <option value="{{ $grup->name }}">{{ $grup->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="row">
                             <div class="col-xs-12 col-md-6">
@@ -130,6 +135,7 @@
             responsive: true,
              "ordering": false
         });
+        $("#mgrubu").select2({ width: '100%',dropdownAutoWidth : true });
     });
        $(function () {
           $('[data-toggle="tooltip"]').tooltip()

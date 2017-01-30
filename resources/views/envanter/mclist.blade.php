@@ -1,10 +1,15 @@
 @extends('layouts.master')
+@if($pagetype === '0')
 @section('title','Malzeme Çıkış')
+@else
+@section('title','Emanetteki Malzemeler')
+@endif
 @section('css')
 <link rel="stylesheet" href="{{URL::asset('/custom/datatables-plugins/dataTables.bootstrap.css')}}">
 <link rel="stylesheet" href="{{URL::asset('css/bootstrap-datepicker.min.css')}}">
 @endsection
 @section('content')
+@if($pagetype === '0')
     <div class="modal fade" id="md-mc">
         <div class="modal-dialog modal-lg" role="form">
             <div class="modal-content">
@@ -38,6 +43,13 @@
                             <input id="tbirim" class="form-control" required>
                         </div>
                         <div class="form-group">
+                            <label>Teslim Türü</label>
+                            <select id="tturu" class="form-control">
+                                <option value="0">Emanet Verildi</option>
+                                <option value="1">Zimmet Edildi</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label>Çıkarılma Tarihi<span style="color:red">*</span></label>
                             <div class="input-group date" id="datetimepicker1">
                                 <input id="ctarih" type="text" class="form-control"><span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
@@ -61,12 +73,15 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+@endif
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
+                @if($pagetype === '0')
                 <div class="panel-heading">
-                    <button id="btn-add-mc" class="btn btn-primary btn-default"><i class="fa fa-plus"></i> Yeni Ekle</button>
+                    <button id="btn-add-mc" class="btn btn-primary btn-default"><i class="fa fa-plus"></i> Çıkış Yap</button>
                 </div>
+                @endif
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     <table width="100%" class="table table-striped table-bordered table-hover" id="dtMalList">
@@ -78,6 +93,7 @@
                             <th>Teslim Eden</th>
                             <th>Teslim Alan</th>
                             <th>Teslim Birimi</th>
+                            <th>Teslim Türü</th>
                             <th>Çıkarma Tarihi</th>
                             <th>#</th>
                         </tr>
@@ -91,14 +107,20 @@
                             <td>{{ $hareket->cikaran_kisi }}</td>
                             <td>{{ $hareket->cikarilan_kisi }}</td>
                             <td>{{ $hareket->teslim_birimi }}</td>
+                            <td id="ttype" value="{{$hareket->teslim_turu}}">{{ $hareket->teslim_turu == 0 ? "Emanet Verildi" : "Zimmet Edildi" }}</td>
                             <td>{{ $hareket->cikarma_tarihi }}</td>
                             <td>
-                                @if(!$hareket->malzemeler[0]->deleted)
-                                <button data-toggle="tooltip" data-placement="top" title="İptal Et" value="{{ $hareket->id }}" class="btn btn-danger btn-circle btn-delete delete-malc"><i class="fa fa-times"></i></button>
-                                <button data-toggle="tooltip" data-placement="top" title="Onayla" id="monay" class="btn btn-info btn-circle bonay" value="{{ $hareket->malzemeler[0]->id }}"><i class="fa fa-check"></i></button>
+                                @if($pagetype === '0')
+                                    @if($hareket->malzemeler[0]->deleted == '0' & !$hareket->gerial )
+                                        <button data-toggle="tooltip" data-placement="top" title="İptal Et" value="{{ $hareket->id }}" class="btn btn-danger btn-circle btn-delete delete-malc"><i class="fa fa-times"></i></button>
+                                        <button data-toggle="tooltip" data-placement="top" title="Onayla" id="monay" class="btn btn-info btn-circle bonay" value="{{ $hareket->malzemeler[0]->id }}"><i class="fa fa-check"></i></button>
+                                    @else
+                                        <button value="{{ $hareket->id }}" class="btn btn-info btn-view">Görüntüle</button>
+                                    @endif
                                 @else
-                                <button value="{{ $hareket->id }}" class="btn btn-info btn-view">Görüntüle</button>
+                                    <button data-toggle="tooltip" data-placement="top" title="Geri Al" id="mgerial" class="btn btn-info btn-circle bgeri" value="{{ $hareket->malzemeler[0]->id }}"><i class="fa fa-reply"></i></button>
                                 @endif
+
                             </td>
                         </tr>
                         @endforeach

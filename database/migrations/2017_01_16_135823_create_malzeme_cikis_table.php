@@ -18,8 +18,10 @@ class CreateMalzemeCikisTable extends Migration
             $table->foreign('malzeme_id')->references('id')->on('malzemeler');
             $table->string('cikaran_kisi');
             $table->string('cikarilan_kisi');
+            $table->string('teslim_turu')->nullable();
             $table->string('teslim_birimi');
             $table->date('cikarma_tarihi');
+            $table->boolean('gerial')->nullable();
             $table->text('gerekce');
             $table->boolean('onay')->default(false);
             $table->text('aciklama')->nullable();

@@ -42,10 +42,27 @@
                     <a href="{{ URL::to('/') }}"><i class="fa fa-dashboard fa-fw"></i> Panel</a>
                 </li>
                 <li>
-                    <a href="{{URL::to('malzemeler/')}}"><i class="fa fa-desktop fa-fw"></i> Malzemeler</a>
+                    <a href="#"><i class="fa fa-desktop fa-fw"></i> Malzemeler<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="{{URL::to('malzemeler/')}}">Malzemeler</a>
+                        </li>
+                        <li>
+                            <a href="{{ URL::to('/hareketler/emanet')}}">Emanetteki Malzemeler</a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="{{URL::to('hareketler/')}}"><i class="fa fa-bar-chart-o fa-fw"></i> Malzeme Çıkış</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-wrench fa-fw"></i> Tanımlamalar<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="{{ URL::to('/gruptanim')}}">Grup Tanımlama</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
                 </li>
                 <li>
                     <a href="{{ URL::to('about') }}"><i class="fa fa-user fa-gear"></i> Program</a>

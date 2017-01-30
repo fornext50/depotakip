@@ -21,7 +21,7 @@ class CreateMalzemelerTable extends Migration
             $table->string('mmodel')->nullable();
             $table->float('mfiyat')->default(0);
             $table->string('mdurum');
-            $table->boolean('deleted')->default(false);
+            $table->string('deleted')->default('0');
             $table->text('mozellik')->nullable();
             $table->string('ip');
             $table->timestamps();

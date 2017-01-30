@@ -14,10 +14,14 @@ class MalzemelerController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(Request $req)
+    public function index()
     {
         //return json_decode($this->getData());
-        return view('envanter.mlist')->with('malzemeler',json_decode($this->getData()));
+        return view('envanter.mlist',[
+            'malzemeler'=>json_decode($this->getData()),
+            'gruplar' => \App\Grup::where('state',true)->get()
+            ]);
+        //return view('envanter.mlist')->with('malzemeler',,'pagetype','0');
     }
 
     public function create()
@@ -27,7 +31,7 @@ class MalzemelerController extends Controller
 
     public function show($id)
     {
-        $data = Malzemeler::all()->where('id',$id)->where('deleted',false);
+        $data = Malzemeler::all()->where('id',$id)->where('deleted','0');
         return view('envanter.mlist')->with('malzemeler',json_decode($data));
     }
 
@@ -95,13 +99,41 @@ public function update(Request $request, $id)
 }
 public function destroy(Request $req,$id)
 {   
-    $malzeme = Malzemeler::find($id);
-    $malzeme->deleted = true;
+    $malzeme = Malzemeler::findOrFail($id);
+
+    if($req->durum == 'onay')
+    {
+        if($req->types == '0')
+            $malzeme->deleted = '2';
+        else
+            $malzeme->deleted = '1';
+        $har = \App\MalzemeCikis::findOrFail($req->hareket_id);
+        $har->gerial = false;
+        $har->save();
+    }
+    else
+        $malzeme->deleted = '0';
+
     $malzeme->save();
     $yazi = sprintf('%s kimlik numaralı %s malzemesini SİLDİ',$malzeme->mkimlik,$malzeme->madi);
     if($req->durum == 'onay')
-        $yazi = sprintf('%s kimlik numaralı %s malzemesinin çıkışını ONAYLADI',$malzeme->mkimlik,$malzeme->madi);
-    Tblog::loglama('MalzemeKayit',$yazi,'Malzeme');
+    {
+        if($req->types == '0')
+            $yazi = sprintf('%s kimlik numaralı %s malzemesinin çıkışını ONAYLAYIP emanet verildi',$malzeme->mkimlik,$malzeme->madi);
+        else
+            $yazi = sprintf('%s kimlik numaralı %s malzemesinin çıkışını ONAYLAYIP zimmet edildi',$malzeme->mkimlik,$malzeme->madi);
+
+        Tblog::loglama('MalzemeKayit',$yazi,'Malzeme');
+    }
+    if($req->durum == 'gerial'){
+        $har = \App\MalzemeCikis::findOrFail($req->hareket_id);
+        $har->onay = false;
+        $har->gerial = true;
+        $har->save();
+        $yazi = sprintf('%s kimlik numaralı %s malzemesini geri stoğa EKLEDİ',$malzeme->mkimlik,$malzeme->madi);
+        Tblog::loglama('MalzemeKayit',$yazi,'Malzeme');
+    }
+
     return response()->json($malzeme);
 }
 

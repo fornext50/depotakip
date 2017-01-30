@@ -12,8 +12,10 @@ $(document).ready(function(){
 		type = "DELETE";
 		var formData = {
 			malzeme_id : m_id,
-			durum: 'onay'
-		}
+			hareket_id : $('.delete-malc').val(),
+			durum: 'onay',
+			types: $('#ttype').val(),
+		};
 
 		$.ajax({
 			url: my_url + '/' + m_id,
@@ -22,6 +24,37 @@ $(document).ready(function(){
 			data : formData,
 			success: function(data){
 				swal('Başarılı','Malzeme Çıkış Onaylandı','success');
+				location.reload();
+			},
+			error:function(xhr){
+				console.log(xhr);
+			}
+		});
+
+	});
+	$('#mgerial').click(function(e){
+		$.ajaxSetup({
+			headers: {
+				"X-CSRF-TOKEN" : $('meta[name="_token"').attr('content')
+			}
+		});
+
+		var m_id = $(this).val();
+		var my_url = window.location.origin + '/malzemeler';
+		type = "DELETE";
+		var formData = {
+			hareket_id : m_id,
+			durum: 'gerial',
+			types: $('#ttype').val()
+		}
+
+		$.ajax({
+			url: my_url + '/' + m_id,
+			type : type,
+			dataType : 'json',
+			data : formData,
+			success: function(data){
+				swal('Başarılı','Malzeme Geri Alındı.!','success');
 				location.reload();
 			},
 		});
@@ -41,7 +74,8 @@ $(document).ready(function(){
 			$('#m_id').val(data.malzeme_id);
 			$('#mcikaran').val(data.cikaran_kisi);
 			$('#mcikarilan').val(data.cikarilan_kisi);
-			$('#tbirim').val(data.tesim_birimi);
+			$('#tbirim').val(data.teslim_birimi);
+			$('#tturu').val(data.teslim_turu);
 			$('#ctarih').val(data.cikarma_tarihi);
 			$('#cgerekce').val(data.gerekce);
 			$('#caciklama').val(data.aciklama);	
@@ -56,7 +90,8 @@ $(document).ready(function(){
 			$('#m_id').val(data.malzeme_id);
 			$('#mcikaran').val(data.cikaran_kisi);
 			$('#mcikarilan').val(data.cikarilan_kisi);
-			$('#tbirim').val(data.tesim_birimi);
+			$('#tbirim').val(data.teslim_birimi);
+			$('#tturu').val(data.teslim_turu);
 			$('#ctarih').val(data.cikarma_tarihi);
 			$('#cgerekce').val(data.gerekce);
 			$('#caciklama').val(data.aciklama);	
@@ -81,6 +116,7 @@ $(document).ready(function(){
 			cikarma_tarihi : $('#ctarih').val(),
 			aciklama : $('#caciklama').val(),
 			teslim_birimi : $('#tbirim').val(),
+			teslim_turu : $('#tturu').val(),
 			ip : window.location.host //localhostfalan yazacak olmadı bence :/ Dediğim gibi ama Model Tarafında o iş halloluyor :)
 		};
 
@@ -104,6 +140,7 @@ $(document).ready(function(){
 			success: function(data){
 				$('#frmMalc').trigger('reset');
 				$('#md-mc').modal('hide');
+				$('#monay').click();
 				location.reload();
 			},
 			error: function (xhr) {
