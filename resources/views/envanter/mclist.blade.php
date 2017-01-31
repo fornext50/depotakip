@@ -50,7 +50,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Çıkarılma Tarihi<span style="color:red">*</span></label>
+                            <label>Getirme Tarihi<span style="color:red">*</span></label>
                             <div class="input-group date" id="datetimepicker1">
                                 <input id="ctarih" type="text" class="form-control"><span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
                             </div>
@@ -94,7 +94,7 @@
                             <th>Teslim Alan</th>
                             <th>Teslim Birimi</th>
                             <th>Teslim Türü</th>
-                            <th>Çıkarma Tarihi</th>
+                            <th>Getirme Tarihi</th>
                             <th>#</th>
                         </tr>
                         </thead>
