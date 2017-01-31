@@ -1,22 +1,23 @@
 $(document).ready(function(){
 	var url = window.location.origin+'/hareketler';
-	$('#monay').click(function(e){
+	$('.bonay').click(function(e){
 		$.ajaxSetup({
 			headers: {
 				"X-CSRF-TOKEN" : $('meta[name="_token"').attr('content')
 			}
 		});
-
+		e.preventDefault();
 		var m_id = $(this).val();
 		var my_url = window.location.origin + '/malzemeler';
 		type = "DELETE";
+
 		var formData = {
 			malzeme_id : m_id,
 			hareket_id : $('.delete-malc').val(),
 			durum: 'onay',
-			types: $('#ttype').val(),
+			types: $('#types').val(),
 		};
-
+		console.log($('#types').val());
 		$.ajax({
 			url: my_url + '/' + m_id,
 			type : type,
@@ -38,14 +39,13 @@ $(document).ready(function(){
 				"X-CSRF-TOKEN" : $('meta[name="_token"').attr('content')
 			}
 		});
-
+	e.preventDefault();
 		var m_id = $(this).val();
 		var my_url = window.location.origin + '/malzemeler';
 		type = "DELETE";
 		var formData = {
-			hareket_id : m_id,
 			durum: 'gerial',
-			types: $('#ttype').val()
+			types: $('#types').val()
 		}
 
 		$.ajax({

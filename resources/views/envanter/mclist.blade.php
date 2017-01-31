@@ -107,20 +107,20 @@
                             <td>{{ $hareket->cikaran_kisi }}</td>
                             <td>{{ $hareket->cikarilan_kisi }}</td>
                             <td>{{ $hareket->teslim_birimi }}</td>
-                            <td id="ttype" value="{{$hareket->teslim_turu}}">{{ $hareket->teslim_turu == 0 ? "Emanet Verildi" : "Zimmet Edildi" }}</td>
+                            <td>{{ $hareket->teslim_turu == 0 ? "Emanet Verildi" : "Zimmet Edildi" }}</td>
                             <td>{{ $hareket->cikarma_tarihi }}</td>
                             <td>
                                 @if($pagetype === '0')
-                                    @if($hareket->malzemeler[0]->deleted == '0' & !$hareket->gerial )
+                                    @if(!$hareket->onay)
                                         <button data-toggle="tooltip" data-placement="top" title="İptal Et" value="{{ $hareket->id }}" class="btn btn-danger btn-circle btn-delete delete-malc"><i class="fa fa-times"></i></button>
-                                        <button data-toggle="tooltip" data-placement="top" title="Onayla" id="monay" class="btn btn-info btn-circle bonay" value="{{ $hareket->malzemeler[0]->id }}"><i class="fa fa-check"></i></button>
+                                        <button value="{{ $hareket->teslim_turu }}" id="types" hidden></button> 
+                                        <button data-toggle="tooltip" data-placement="top" title="Onayla" id="monay" class="btn btn-info btn-circle bonay" value="{{ $hareket->id }}"><i class="fa fa-check"></i></button>
                                     @else
                                         <button value="{{ $hareket->id }}" class="btn btn-info btn-view">Görüntüle</button>
                                     @endif
                                 @else
-                                    <button data-toggle="tooltip" data-placement="top" title="Geri Al" id="mgerial" class="btn btn-info btn-circle bgeri" value="{{ $hareket->malzemeler[0]->id }}"><i class="fa fa-reply"></i></button>
+                                    <button data-toggle="tooltip" data-placement="top" title="Geri Al" id="mgerial" class="btn btn-info btn-circle bgeri" value="{{ $hareket->id }}"><i class="fa fa-reply"></i></button>
                                 @endif
-
                             </td>
                         </tr>
                         @endforeach

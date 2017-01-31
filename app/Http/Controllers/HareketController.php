@@ -62,7 +62,7 @@ class HareketController extends Controller
 
     public function show($id)
     {
-       $hareketler = MalzemeCikis::orderBy('created_at','desc')->where('teslim_turu','0')->where('gerial',false)->get();
+       $hareketler = MalzemeCikis::orderBy('created_at','desc')->where('teslim_turu','0')->where('gerial',false)->where('onay',true)->get();
        //return $hareketler;
        return view('envanter.mclist',['hareketler' => $hareketler,'pagetype'=>'1']);
     }
