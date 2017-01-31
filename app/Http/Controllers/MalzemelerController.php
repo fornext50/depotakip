@@ -36,7 +36,7 @@ class MalzemelerController extends Controller
     }
 
     public  function store(Request $request){
-        $validator = Validator::make($request->all(), [
+            $validator = Validator::make($request->all(), [
             'madi'    => 'required|max:255',
             'mkimlik' => 'required|max:255',
             'mgrubu'  => 'required|max:255',

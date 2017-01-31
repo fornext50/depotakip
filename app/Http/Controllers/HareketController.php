@@ -30,11 +30,11 @@ class HareketController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'malzeme_id' => 'required',
+            'malzeme_id'     => 'required',
             'cikarilan_kisi' => 'required|max:255',
             'gerekce'        => 'required|max:255',
             'cikarma_tarihi' => 'required',
-            'teslim_birimi' => 'required|max:255'
+            'teslim_birimi'  => 'required|max:255'
         ]);
 
         if ($validator->fails()) {

@@ -33,9 +33,9 @@ class HomeController extends Controller
         $data = [
             'malzemesayisi' => \App\Malzemeler::where('deleted','0')->count(),
             'hareketsayisi' => \App\MalzemeCikis::all()->count(),
-            'emanetsayisi' => \App\MalzemeCikis::where('teslim_turu','0')->where('gerial',false)->count(),
-            'malzemeler' =>$malzemeler->take(10)->get(),
-            'emanetler' => $hareketler2->take(10)->get(),
+            'emanetsayisi'  => \App\MalzemeCikis::where('teslim_turu','0')->where('gerial',false)->count(),
+            'malzemeler'    => $malzemeler->take(10)->get(),
+            'emanetler'     => $hareketler2->take(10)->get(),
         ];
        // return response()->json($data);
         return view('index')->with('data',$data);
@@ -64,8 +64,8 @@ class HomeController extends Controller
         $current_password = Auth::User()->password;           
         if(Hash::check($req['oldpassword'], $current_password))
         {           
-            $user_id = Auth::User()->id;                       
-            $obj_user = \App\User::find($user_id);
+            $user_id            = Auth::User()->id;                       
+            $obj_user           = \App\User::find($user_id);
             $obj_user->password = Hash::make($req['newpassword']);;
             $obj_user->save(); 
             return response()->json($obj_user);
@@ -79,16 +79,16 @@ class HomeController extends Controller
 
     public function postEdit(Request $request){
         $validator = Validator::make($request->all(), [
-            'username'   => 'required|max:255',
-            'mail' => 'required|email',
+            'username' => 'required|max:255',
+            'mail'     => 'required|email',
         ]);
 
         if ($validator->fails()) {
             $message = $validator->errors();
             return response()->json(['mesaj' => $message],404); // Status code here
         }
-        $user = \App\User::find($request->uid);
-        $user->name = $request->username;
+        $user        = \App\User::find($request->uid);
+        $user->name  = $request->username;
         $user->email = $request->mail;
         $user->save();
         return response()->json($user);
