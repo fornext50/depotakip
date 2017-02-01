@@ -17,7 +17,7 @@
                 width: 100%;
                 display: table;
                 font-weight: 100;
-                background-color: #2E3C42;
+                background-color: #1D1D1D;
             }
             .container {
                 text-align: center;
@@ -33,7 +33,7 @@
             .error-template h1 { color:red;font-weight: bold;font-size: 40px;}
             .error-actions {margin-top:15px;margin-bottom:15px;}
             .error-actions .btn { margin-right:10px; }
-            .error-details{ font-size:36px; color:#F6CA3F;}
+            .error-details{ font-size:36px; color:#D47B07;}
         </style>
     </head>
     <body>
@@ -43,6 +43,7 @@
                     <div class="error-template">
                         <h1>Devre Dışı!</h1>
                         <div class="error-details">Bu Alan Sistem Tarafından Devre Dışı bırakılmıştır!</div>
+                        <div class="error-details">Sistem yöneticiniz ile iletişime geçiniz!</div>
                         <div class="error-actions">
                         <a href="{{ URL::to('/') }}" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
                         Anasayfa </a>

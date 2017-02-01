@@ -15,7 +15,7 @@ $(document).ready(function(){
 			$('#m_id').val(data.id);
 			$('#mkimlik').val(data.mkimlik);
 			$('#madi').val(data.madi);
-			$("#mgrubu").val(data.mgrubu);
+			$("#mgrubu").val(data.mgrubu).trigger("change");
 			$('#mmarka').val(data.mmarka);
 			$('#mmodel').val(data.mmodel);
 			$('#c2').val(data.mfiyat);

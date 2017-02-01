@@ -82,6 +82,12 @@ $(document).ready(function() {
 		});
 	});
 
+	$('#logins').click(function(e) {
+		var username = $('#email').val();
+		if(!username.includes('@'))
+			$('#email').val(username+'@nevsehir.edu.tr');
+	});
+
 	$('#btnsave-sifre').click(function(e){
 		$.ajaxSetup({
 			headers: {

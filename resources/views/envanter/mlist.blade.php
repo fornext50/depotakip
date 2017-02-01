@@ -136,6 +136,7 @@
              "ordering": false
         });
         $("#mgrubu").select2({ width: '100%',dropdownAutoWidth : true });
+         
     });
        $(function () {
           $('[data-toggle="tooltip"]').tooltip()

@@ -71,7 +71,7 @@ $(document).ready(function(){
 	$('.btn-edit').click(function(event){
 		var m_id = $(this).val();
 		$.get(url + '/' + m_id + '/edit',function (data){
-			$('#m_id').val(data.malzeme_id);
+			$('#m_id').val(data.malzeme_id).trigger("change");
 			$('#mcikaran').val(data.cikaran_kisi);
 			$('#mcikarilan').val(data.cikarilan_kisi);
 			$('#tbirim').val(data.teslim_birimi);
@@ -87,7 +87,7 @@ $(document).ready(function(){
 	$('.btn-view').click(function(event){
 		var m_id = $(this).val();
 		$.get(url + '/' + m_id + '/edit',function (data){
-			$('#m_id').val(data.malzeme_id);
+			$('#m_id').val(data.malzeme_id).trigger("change");
 			$('#mcikaran').val(data.cikaran_kisi);
 			$('#mcikarilan').val(data.cikarilan_kisi);
 			$('#tbirim').val(data.teslim_birimi);

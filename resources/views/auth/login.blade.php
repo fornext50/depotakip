@@ -12,7 +12,7 @@
                         {{ csrf_field() }}
                         <fieldset>
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                <input id="email" type="email" class="form-control" placeholder="E-Posta Adresiniz" name="email" value="{{ old('email') }}" required autofocus>
+                                <input id="email" type="text" class="form-control" placeholder="E-Posta Adresiniz" name="email" value="{{ old('email') }}" required autofocus>
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -38,7 +38,7 @@
                                 <a href="{{ url('/password/reset') }}">Şifremi unuttum</a>
                             </div>
                             <!-- Change this to a button or input when using this as a form -->
-                            <button type="submit" class="btn btn-lg btn-success btn-block">
+                            <button type="submit" id='logins' class="btn btn-lg btn-success btn-block">
                                 Giriş Yap
                             </button>
                         </fieldset>
