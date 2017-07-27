@@ -45,7 +45,7 @@
                     </form>
                 </div>
             </div>
-            <p style="text-align: center">2017 © Bilgi İşlem Daire Başkanlığı</p>
+            <p style="text-align: center">2017 © Rhn Yazılım</p>
         </div>
 
     </div>
